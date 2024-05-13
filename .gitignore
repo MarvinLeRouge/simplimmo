@@ -1,0 +1,5 @@
+.env
+app/logs/
+app/public/assets/geo_data/
+data/
+vendor/

@@ -1,0 +1,52 @@
+name: simplimmo
+
+services:
+  app:
+    build: ./docker
+    container_name: simplimmo_app
+    depends_on:
+      - db
+    restart: always
+    image: marvinlerouge/php-83
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/var/www/public
+    environment:
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+  pma:
+    image: phpmyadmin
+    container_name: simplimmo_pma
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      APACHE_SERVER_NAME: db
+  db:
+    image: mysql:8
+    container_name: simplimmo_db
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "--password=$${MYSQL_ROOT_PASSWORD}", "--silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: simplimmo
+      MYSQL_USER: simplimmo
+      MYSQL_PASSWORD: simplimmo
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./data/conf:/etc/mysql/conf.d
+      - ./data/logs:/logs
