@@ -1,8 +1,8 @@
 <?php
-namespace Controllers;
+namespace Simplimmo\Controllers;
 
 class Controller {
-    use \Services\Response;
+    use \Simplimmo\Services\Response;
 
     public function __construct() {
         zlog(get_class($this) . " instantiation");

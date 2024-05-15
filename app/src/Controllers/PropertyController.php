@@ -1,6 +1,6 @@
 <?php
-namespace Controllers;
-use Controllers\Controller;
+namespace Simplimmo\Controllers;
+use Simplimmo\Controllers\Controller;
 
 class PropertyController extends Controller {
 

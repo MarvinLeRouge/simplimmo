@@ -1,5 +1,5 @@
 <?php
-namespace Services;
+namespace Simplimmo\Services;
 
 // Définition d'un trait `Response`.
 trait Response {

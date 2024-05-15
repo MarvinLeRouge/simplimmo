@@ -1,7 +1,7 @@
 <?php
-namespace Controllers;
+namespace Simplimmo\Controllers;
 
-use Repositories\StudentRepository;
+use Simplimmo\Repositories\StudentRepository;
 
 class StudentController {
     use \Services\Response;

@@ -1,18 +1,18 @@
 <?php
 
 // Create the controller instances
-use Controllers\SiteController;
-use Controllers\PropertyController;
-use Controllers\HouseController;
-use Controllers\AppartmentController;
-use Controllers\ClientController;
-use Controllers\AdminController;
-use Controllers\ContactController;
-use Controllers\ContactClientPropertyController;
+use Simplimmo\Controllers\SiteController;
+use Simplimmo\Controllers\PropertyController;
+use Simplimmo\Controllers\HouseController;
+use Simplimmo\Controllers\AppartmentController;
+use Simplimmo\Controllers\ClientController;
+use Simplimmo\Controllers\AdminController;
+use Simplimmo\Controllers\ContactController;
+use Simplimmo\Controllers\ContactClientPropertyController;
 
 
-use Controllers\HomeController;
-use Controllers\StudentController;
+use Simplimmo\Controllers\HomeController;
+use Simplimmo\Controllers\StudentController;
 
 $uri = $_SERVER['REQUEST_URI'];
 $uri = trim($uri, "/");
@@ -31,7 +31,7 @@ $regexes = [
 ];
 $controllersMatch = [
     "maison" => "HouseController",
-    "appartement" => "AppartmentController",
+    "appartement" => "ApartmentController",
 ];
 foreach($regexes as $regex => $routing) {
     $controller = $method = $param = null;
@@ -114,6 +114,14 @@ if((empty($controller)) || (empty($method))) {
             "controller" => "ContactClientPropertyController",
             "method" => "index",
         ],
+        "maison" => [
+            "controller" => "HouseController",
+            "method" => "index",
+        ],
+        "appartement" => [
+            "controller" => "ApartmentController",
+            "method" => "index",
+        ],
         URL_STUDENTS => [
             "controller" => "StudentController",
             "method" => "index",
@@ -128,7 +136,7 @@ if((empty($controller)) || (empty($method))) {
 zdebug(compact("uri", "controller", "method", "param"));
 
 if(!empty($controller)) {
-    $controller = "Controllers\\" . $controller;
+    $controller = "Simplimmo\\Controllers\\" . $controller;
     $controller = new $controller;
 }
 

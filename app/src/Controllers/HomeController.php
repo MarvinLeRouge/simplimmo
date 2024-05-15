@@ -1,5 +1,5 @@
 <?php
-namespace Controllers;
+namespace Simplimmo\Controllers;
 
 class HomeController {
     use \Services\Response;

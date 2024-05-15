@@ -20,7 +20,7 @@ zlog("let's start logging");
 
 require_once(__DIR__ . "/../vendor/autoload.php");
 
-use Classes\Database;
+use Simplimmo\Classes\Database;
 $database = new Database();
 
 require_once __DIR__ . "/router.php";

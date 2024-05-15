@@ -1,5 +1,6 @@
 <?php
-namespace Controllers;
+namespace Simplimmo\Controllers;
+use Simplimmo\Controllers\Controller;
 
 class ContactController extends Controller {
 

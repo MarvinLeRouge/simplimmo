@@ -1,5 +1,5 @@
 <?php
-namespace Classes;
+namespace Simplimmo\Classes;
 
 // Inclut une seule fois le fichier de configuration pour accéder aux constantes de connexion à la base de données.
 /*require_once __DIR__ . "/../config.php";*/
