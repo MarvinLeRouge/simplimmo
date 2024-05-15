@@ -1,14 +1,12 @@
 <?php
 namespace Controllers;
 
-//require_once __DIR__ . '/../Services/Response.php';
-//use \Response;
-
 class HomeController {
     use \Services\Response;
 
     public function index() {
-        zlog("home/index");
+        zlog(__CLASS__ . " / " . __FUNCTION__);
+        zdebug(__CLASS__ . " / " . __FUNCTION__);
         $title = "Welcome!";
 
         $viewData = [
@@ -16,10 +14,5 @@ class HomeController {
         ];
 
         $this->render('HomePageTemplate', $viewData);
-    }
-
-    public function pageNotFound() {
-        zlog("home/404");
-        $this->render('404');
     }
 }

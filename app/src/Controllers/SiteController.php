@@ -1,12 +1,37 @@
 <?php
-namespace app\controllers;
+namespace Controllers;
 
 class SiteController extends Controller {
-    public function __construct() {
-        $this->registerMiddleware(new AuthMiddleware(['profile']));
+
+    /**
+     * 
+     * Page de contact générique
+     * 
+     */
+    public function contact() {
+        zlog(__CLASS__ . " / " . __FUNCTION__);
+        zdebug(__CLASS__ . " / " . __FUNCTION__);
     }
 
-    public function home() {
+    /**
+     * 
+     * Page de mentions légales
+     * 
+     */
+    public function legalNotice() {
+        zlog(__CLASS__ . " / " . __FUNCTION__);
+        zdebug(__CLASS__ . " / " . __FUNCTION__);
+    }
+
+    /**
+     * 
+     * Page 404
+     * 
+     */
+    public function pageNotFound() {
+        zlog(__CLASS__ . " / " . __FUNCTION__);
+        zdebug(__CLASS__ . " / " . __FUNCTION__);
+        $this->render('404');
     }
 
 }

@@ -9,5 +9,5 @@ define("DATABASE_PASSWORD", "root");
 */
 // Routing environment variables
 define("BASE_URL", "/path/to/the/project/public");
-define("URL_HOMEPAGE", "/hp");
-define("URL_STUDENTS", "/students");
+define("URL_HOMEPAGE", "hp");
+define("URL_STUDENTS", "students");
