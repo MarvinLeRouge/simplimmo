@@ -1,5 +1,5 @@
 <?php
-namespace Simplimmo\Core\View;
+namespace Simplimmo\Core;
 
 class View {
     public function __construct() {

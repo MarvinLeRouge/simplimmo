@@ -1,11 +1,8 @@
 <?php
-
 namespace Simplimmo\Models;
-
 use Simplimmo\Models\Property as Property;
 
-class House extends Property
-{
+class House extends Property {
 
     protected int $land_surface;
 

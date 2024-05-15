@@ -1,8 +1,13 @@
 <?php
 namespace Simplimmo\Controllers;
 use Simplimmo\Controllers\PropertyController;
+use Simplimmo\Models\House;
 
 class HouseController extends PropertyController {
+    public function __construct() {
+        parent::__construct();
+        //$this->model = new House();
+    }
 
     /**
      * 

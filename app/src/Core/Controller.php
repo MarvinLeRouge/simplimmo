@@ -1,5 +1,5 @@
 <?php
-namespace Simplimmo\Core\Controller;
+namespace Simplimmo\Core;
 
 class Controller {
     protected $model;
