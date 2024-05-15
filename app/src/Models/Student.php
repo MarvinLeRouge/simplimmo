@@ -1,7 +1,9 @@
 <?php
+
 namespace Models;
 
-class Student {
+class Student
+{
     private $id;
     private $name;
     private $surname;
@@ -9,47 +11,58 @@ class Student {
     private $email;
     private $department_id;
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getSurname() {
+    public function getSurname()
+    {
         return $this->surname;
     }
 
-    public function setSurname($surname) {
+    public function setSurname($surname)
+    {
         $this->surname = $surname;
     }
 
-    public function getBirthdate() {
+    public function getBirthdate()
+    {
         return $this->birthdate;
     }
 
-    public function setBirthdate($birthdate) {
+    public function setBirthdate($birthdate)
+    {
         $this->birthdate = $birthdate;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    public function getDepartmentId() {
+    public function getDepartmentId()
+    {
         return $this->department_id;
     }
 
-    public function setDepartmentId($departmentId) {
+    public function setDepartmentId($departmentId)
+    {
         $this->department_id = $departmentId;
     }
 }
