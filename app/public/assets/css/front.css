@@ -1,0 +1,90 @@
+/* Reset */
+html, body {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    font-family: inherit;
+    max-width: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    height: auto;
+}
+
+/* Layout */
+body {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+/* Fonts */
+html,
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+ol, 
+ul {
+    list-style: none;
+}
+
+p, ol, ul, form {
+    margin-top: 1.5rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1.5em;
+}
+
+/* Forms */
+label,
+input {
+    display: block;;
+}
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="telephone"],
+input[type="email"],
+input[type="submit"],
+button {
+    padding: .5em 1em;
+}
+

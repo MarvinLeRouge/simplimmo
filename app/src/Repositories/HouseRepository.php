@@ -6,21 +6,17 @@ use \PDO;
 use Simplimmo\Classes\Database as Database;
 use Simplimmo\Models\House as House;
 
-class HouseRepository extends Database
-{
-
-    public function getAll()
-    {
-        $req = $this->getDb()->query('SELECT * FROM property WHERE property_type = "house"');
+class HouseRepository extends Database {
+    public function getAll() {
+        $req = $this->db->query('SELECT * FROM property WHERE property_type = "house"');
 
         $data = $req->fetchAll(PDO::FETCH_CLASS, House::class);
 
         return $data;
     }
 
-    public function findById($house_id)
-    {
-        $req = $this->getDb()->prepare('SELECT * FROM property WHERE property_type = "house" AND id = :id');
+    public function findById($house_id) {
+        $req = $this->db->prepare('SELECT * FROM property WHERE property_type = "house" AND id = :id');
 
         $req->execute([
             'id' => $house_id
@@ -44,7 +40,7 @@ class HouseRepository extends Database
         :description, :property_address, :township_id, :living_space_area, :energetic_class_type, :ges_class_type,
         :year_of_construction, :characteristics, :added_date, :update_date, :access_date)';
 
-        $req = $this->getDb()->prepare($query);
+        $req = $this->db->prepare($query);
 
         $req->execute([
             'property_type' => $property_type,
@@ -70,14 +66,14 @@ class HouseRepository extends Database
     {
         $query = 'SELECT * FROM property WHERE property_type = "house" AND id = :id';
 
-        $req = $this->getDb()->prepare($query);
+        $req = $this->db->prepare($query);
 
         $req->execute([
             'id' => $house_id
         ]);
     }
 
-    public function update($house_id,$property_type, $listing_type, $price, $property_rooms, $property_bedrooms,
+    public function update($house_id, $property_type, $listing_type, $price, $property_rooms, $property_bedrooms,
                            $description, $property_address, $township_id, $living_space_area,
                            $energetic_class_type, $ges_class_type, $year_of_construction, $characteristics,
                            $added_date, $update_date, $access_date)
@@ -90,7 +86,7 @@ class HouseRepository extends Database
         WHERE property_type = house AND id = :id';
 
 
-        $req = $this->getDb()->prepare($query);
+        $req = $this->db->prepare($query);
 
         $req->execute([
             'property_type' => $property_type,

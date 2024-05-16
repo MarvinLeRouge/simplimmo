@@ -10,7 +10,7 @@ use \PDO;
  */
 class Database {
     // Propriété privée pour stocker l'instance de la connexion PDO.
-    private $db;
+    protected $db;
 
     /**
      * Constructeur de la classe Database.
@@ -43,8 +43,7 @@ class Database {
      * 
      * @return PDO L'instance de PDO représentant la connexion à la base de données.
      */
-    public function getDb()
-    {
+    public function getDb() {
         return $this->db;
     }
 }
