@@ -1,5 +1,5 @@
 <?php
-namespace Simplimmo\Core\Model;
+namespace Simplimmo\Core;
 
 class Model {
     protected $properties;
