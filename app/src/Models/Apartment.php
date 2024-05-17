@@ -1,6 +1,6 @@
 <?php
 
-namespace Simplimmo\Models\House;
+namespace Simplimmo\Models;
 
 use Simplimmo\Models\Property as Property;
 

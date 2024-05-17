@@ -1,6 +1,6 @@
 <?php
 
-namespace Simplimmo\Models\Property;
+namespace Simplimmo\Models;
 
 use Simplimmo\Core\Model as Model;
 
