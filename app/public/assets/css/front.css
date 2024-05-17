@@ -1,0 +1,280 @@
+/* Reset */
+html, body {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    font-family: inherit;
+    max-width: 100%;
+    color: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    height: auto;
+}
+
+/* Layout */
+body {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 2% 1rem 2%;
+}
+    /* Header */
+.main_header {
+    display: grid;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+.main_header__links {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: auto auto;
+    justify-content: center;
+}
+    /* Footer */
+.main_footer {
+    margin-top: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+.main_footer__title,
+.main_footer__misc,
+.main_footer__copyright {
+    margin-top: 0
+}
+.main_footer__list {
+    margin-top: .5rem
+}
+.main_footer__copyright {
+    grid-column: 1/-1
+}
+
+/* Fonts */
+html,
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+ol, 
+ul {
+    list-style: none;
+}
+
+p, ol, ul, form {
+    margin-top: 1.5rem;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1.5em;
+}
+.main_footer__title {
+    font-weight: 600;
+}
+.main_footer__list {
+    font-size: .875rem;
+}
+.main_footer__link {
+    text-decoration: none;
+}
+.main_footer__link:hover,
+.main_footer__link:focus {
+    text-decoration: underline;
+}
+.main_footer__copyright {
+    text-align: center;
+    font-style: italic;
+    font-size: .875rem;
+
+}
+/* Forms */
+label,
+input {
+    display: block;
+    width: 100%;
+}
+label,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+input[type="telephone"],
+input[type="email"],
+input[type="submit"],
+button {
+    padding: .5em 1em;
+}
+input[type=number] {
+    appearance: textfield;
+}
+.estate_search_form {
+    display: grid;
+}
+.estate_search_form p.form_submit button {
+    width: 100%;
+}
+
+/* Search results */
+.estate_search_results__list {
+    display: grid;
+    gap: 2rem;
+}
+.estate_card {
+    display: block;;
+    text-decoration: none;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    background: #eee;
+}
+.estate_card:hover,
+.estate_card:focus {
+    background: #333;
+    color: #fff;
+}
+.estate_card__img {
+    border-radius: 1rem;
+}
+.estate_card__txt {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 1rem;
+    padding: .5rem .5rem .5rem 0;
+
+}
+.estate_card p {
+    margin: 0;
+}
+.estate_search_results__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+}
+.estate_search_results_pagination__link,
+.estate_search_results_pagination__current {
+    display: block;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    text-align: center;
+    background: #eee;
+    border-radius: 50%;
+
+}
+.estate_search_results_pagination__link {
+    text-decoration: none;
+
+
+}
+.estate_search_results_pagination__link:hover, .focus {
+    background: #333;
+    color: #fff;
+}
+@media screen and (min-width:48rem) {
+    /* Header */
+    .main_header {
+        grid-template-columns: auto auto;
+        justify-content: stretch;
+    }
+    .main_header__links {
+        justify-content: end;
+    }
+    /* Footer */
+    .main_footer {
+        grid-template-columns: 1fr 1fr;
+    }
+    .main_footer__misc {
+        grid-column: 1/3;
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: start;
+        align-items: end;
+        gap: 2rem;
+    }
+    .main_footer__misc .main_footer__list {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2rem;
+    }
+
+    /* Search form */
+    .estate_search_form {
+        grid-template-columns: auto auto auto;
+        gap: 0 2rem;
+        justify-content: left;
+        align-items: start;
+    }
+    .estate_search_form p.form_submit {
+        align-self: end;
+    }
+    .estate_search_form p {
+        margin-top: 0;
+    }
+    .estate_search_form__transaction_type {
+        grid-column: 1/4;
+    }
+    .estate_search_form label {
+        margin-bottom: calc(-2em-2px);
+    }
+
+    /* Search results */
+    .estate_search_results__list {
+        grid-template-columns: 1fr 1fr;
+    }
+    .estate_card {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (min-width:60rem) {
+    /* Footer */
+    .main_footer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .main_footer__misc {
+        grid-column: auto;
+        display: block;
+    }
+    .main_footer__misc .main_footer__list {
+        display: block;
+    }
+
+}

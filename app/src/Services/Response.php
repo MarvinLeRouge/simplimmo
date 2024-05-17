@@ -9,6 +9,8 @@ trait Response {
      * - $data (les données à passer à la vue, optionnel).
      */
     public function render($view, $data = null) {
+        zlog(__CLASS__ . " / " . __FUNCTION__);
+        zdebug($data);
         if (!empty($data)) {
             extract($data);
         }
