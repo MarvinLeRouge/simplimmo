@@ -46,7 +46,6 @@ foreach($regexes as $regex => $routing) {
             $controller = $matches[$index];
         }
         if(strpos($method, "$") !== false) {
-            zdebug("$ in method");
             $index = (int) substr($method, 1);
             $method = $matches[$index];
         }
@@ -61,8 +60,6 @@ foreach($regexes as $regex => $routing) {
     }
 }
 
-zdebug(compact("controller", "method", "param"));
-
 // Ici, peut-être, un filtrage de l'uri par regex pour voir si on est sur un modèle connu
 if((empty($controller)) || (empty($method))) {
     $routes = [
@@ -72,6 +69,10 @@ if((empty($controller)) || (empty($method))) {
         ],
         "" => [
             "controller" => "PropertyController",
+            "method" => "index",
+        ],
+        "maison" => [
+            "controller" => "HouseController",
             "method" => "index",
         ],
         "contact" => [
@@ -122,18 +123,11 @@ if((empty($controller)) || (empty($method))) {
             "controller" => "ApartmentController",
             "method" => "index",
         ],
-        URL_STUDENTS => [
-            "controller" => "StudentController",
-            "method" => "index",
-        ],
     ];
 
     $route = $routes[$uri] ?? $routes["default"];
-    zdebug(__LINE__);
-    zdebug(compact("uri", "controller", "method", "param"));
     extract($route);
 }
-zdebug(compact("uri", "controller", "method", "param"));
 
 if(!empty($controller)) {
     $controller = "Simplimmo\\Controllers\\" . $controller;

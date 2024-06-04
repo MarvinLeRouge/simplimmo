@@ -5,8 +5,19 @@ mb_internal_encoding('UTF-8');
 session_start();
 date_default_timezone_set('Europe/Paris');
 
-function zdebug($data) {
-    echo("<pre>" . print_r($data, true) . "</pre>");
+function zdebug() {
+    $args = func_get_args();
+    if(count($args) == 1) {
+        echo("<pre>" . print_r($args[0], true) . "</pre>");
+    }
+    else if (count($args) == 2) {
+        $title = $args[0];
+        $data = $args[1];
+        echo("<pre>" . ($title ? $title . "\n" : "") . print_r($data, true) . "</pre>");
+    }
+    else {
+        echo("<pre>" . print_r($args, true) . "</pre>");
+    }
 }
 
 function zlog($data) {

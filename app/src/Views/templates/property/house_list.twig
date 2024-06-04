@@ -1,0 +1,9 @@
+{# templates/house_list.twig #}
+
+<ul class="properties_list">
+    {% for property in properties %}
+        <li class="properties_list__item">
+            X{{ property.title }}Y
+        </li>
+    {% endfor %}
+</ul>

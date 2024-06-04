@@ -4,27 +4,31 @@ use Simplimmo\Models\Property as Property;
 
 class House extends Property {
 
-    protected int $land_surface;
-
     /**
      *
      * @params ...
      *
      */
-    public function __construct(protected $data = [])
-    {
+    public function __construct(protected $data = []) {
         parent::__construct($data);
-        $this->land_surface = $this->data['land_surface'] ?? 0;
     }
 
-    public function getLandSurface(): int
-    {
+    public function getLevels(): int {
+        return $this->levels;
+    }
+
+    public function setLevels(int $levels): bool {
+        $this->levels = $levels;
+        return ($this->levels == $levels);
+    }
+
+    public function getLandSurface(): int {
         return $this->land_surface;
     }
 
-    public function setLandSurface(int $land_surface): int
-    {
-        return $this->land_surface = $land_surface;
+    public function setLandSurface(int $land_surface): bool {
+        $this->land_surface = $land_surface;
+        return ($this->land_surface == $land_surface);
     }
 
 }

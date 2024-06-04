@@ -16,12 +16,12 @@ class ClientRepository extends Database
 
         return $data;
     }
-    public function findById($client_id): array
+    public function getById($client_id): array
     {
-        $req = $this->getDb()->prepare('SELECT * FROM client WHERE id = :id');
+        $req = $this->getDb()->prepare('SELECT * FROM client WHERE client_id = :client_id');
 
         $req->execute([
-            'id' => $client_id
+            'client_id' => $client_id
         ]);
 
         $req->setFetchMode(PDO::FETCH_CLASS, Client::class);
@@ -29,10 +29,10 @@ class ClientRepository extends Database
         return $req->fetch();
     }
 
-    public function create($first_name, $last_name, $phone_number, $email, $password, $added_date, $update_date): void
+    public function create($first_name, $last_name, $phone_number, $email, $password, $added_date, $updated_date): void
     {
-        $query = 'INSERT INTO property (firstname, lastname, phone_number, email, password, added_date, update_date)
-                VALUES ( :firstname, :lastname, :phone_number, :email, :password, :added_date, :update_date)';
+        $query = 'INSERT INTO property (firstname, lastname, phone_number, email, password)
+                VALUES ( :firstname, :lastname, :phone_number, :email, :password)';
 
         $req = $this->getDb()->prepare($query);
 
@@ -41,26 +41,24 @@ class ClientRepository extends Database
             'lastname' => $last_name,
             'phone_number' => $phone_number,
             'email' => $email,
-            'password' => $password,
-            'added_date' => $added_date,
-            'update_date' => $update_date
+            'password' => $password
         ]);
     }
 
     public function delete($client_id): void
     {
-        $query = 'SELECT * FROM client WHERE id = :id';
+        $query = 'SELECT * FROM client WHERE client_id = :client_id';
 
         $req = $this->getDb()->prepare($query);
 
         $req->execute([
-            'id' => $client_id
+            'client_id' => $client_id
         ]);
     }
 
-    public function update($client_id, $first_name, $last_name, $phone_number, $email, $password, $added_date, $update_date): void
+    public function update($client_id, $first_name, $last_name, $phone_number, $email, $password): void
     {
-        $query = 'UPDATE client SET firstname = :firstname, lastname = :lastname, phone_number = :phone_number, email = :email, password = :password, added_date = :added_date, update_date = :update_date WHERE id = :id';
+        $query = 'UPDATE client SET firstname = :firstname, lastname = :lastname, phone_number = :phone_number, email = :email, password = :password WHERE client_id = :client_id';
 
         $req = $this->getDb()->prepare($query);
 
@@ -70,9 +68,7 @@ class ClientRepository extends Database
             'phone_number' => $phone_number,
             'email' => $email,
             'password' => $password,
-            'added_date' => $added_date,
-            'update_date' => $update_date,
-            'id' => $client_id
+            'client_id' => $client_id
         ]);
     }
 }

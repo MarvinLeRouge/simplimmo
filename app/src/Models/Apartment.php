@@ -4,42 +4,25 @@ namespace Simplimmo\Models;
 
 use Simplimmo\Models\Property as Property;
 
-class Apartment extends Property
-{
-    protected bool $isFurnished;
-    protected int $levels;
+class Apartment extends Property {
+    
 
     /**
      *
      * @params ...
      *
      */
-    public function __construct(protected $data = [])
-    {
+    public function __construct(protected $data = []) {
         parent::__construct($data);
-        $this->isFurnished = $this->data['isFurnished'] ?? false;
-        $this->levels = $this->data['levels'] ?? 0;
     }
 
-    public function isFurnished(): bool
-    {
-        return $this->isFurnished;
+    public function isFurnished(): bool {
+        return $this->is_furnished;
     }
 
-    public function setFurnished(bool $isFurnished): bool
-    {
-        return $this->isFurnished = $isFurnished;
+    public function setFurnished(bool $is_furnished): bool {
+        $this->is_furnished = $is_furnished;
+        return ($this->is_furnished == $is_furnished);
     }
-
-    public function getLevels(): int
-    {
-        return $this->levels;
-    }
-
-    public function setLevels(int $levels): int
-    {
-        return $this->levels = $levels;
-    }
-
 
 }

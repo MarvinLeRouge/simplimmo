@@ -1,9 +1,20 @@
 <?php
 namespace Simplimmo\Controllers;
-use Simplimmo\Controllers\Controller;
+use Simplimmo\Core\Controller as Controller;
+use Simplimmo\Models\Property as Property;
+use Simplimmo\Repositories\PropertyRepository as PropertyRepository;
+use Simplimmo\Services\Utils as Utils;
 
 class PropertyController extends Controller {
+    protected Property $model;
+    protected PropertyRepository $repository;
 
+    public function __construct() {
+        parent::__construct();
+        $this->model = new Property();
+        $this->repository = new PropertyRepository();
+    }
+    
     /**
      * 
      * Get list of all properties
@@ -11,7 +22,12 @@ class PropertyController extends Controller {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        zdebug(__CLASS__ . " / " . __FUNCTION__);
+        $data = $this->repository->getAll();
+        foreach($data as $i => $row) {
+            $url = Utils::buildUrl([$row->getBuildingType(), $row->getTitle()], $row->getId());
+            zdebug($url);
+        }
+        $this->render('property/property_list.twig', ['properties' => $data]);
     }
 
     /**
@@ -20,8 +36,9 @@ class PropertyController extends Controller {
      * 
      */
     public function details($id) {
+        $data = $this->repository->getById($id);
+        $this->render('property/property.twig', ['data' => $data]);
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -31,6 +48,5 @@ class PropertyController extends Controller {
      */
     public function callMeBack($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 }

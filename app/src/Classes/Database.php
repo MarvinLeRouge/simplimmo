@@ -23,13 +23,6 @@ class Database {
             // Les informations de connexion sont récupérées à partir des variables définies dans `config.php`.
             $this->db = new PDO("mysql:host=" . $_ENV["DB_HOST"] . ":" . $_ENV["DB_PORT"] . ";dbname=" . $_ENV["DB_DATABASE"], $_ENV["DB_USERNAME"], $_ENV["DB_PASSWORD"]);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            /* DEBUG */
-            /*
-            $statement = $this->db->prepare("SELECT * FROM geo_region");
-            $statement->execute();
-            $lines = $statement->fetchAll();
-            zdebug($lines);
-            */
             zlog("DB Connection Ok");
         } catch (Exception $error) {
             // En cas d'erreur de connexion, le script est arrêté et un message d'erreur est affiché.
