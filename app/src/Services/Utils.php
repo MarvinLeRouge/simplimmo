@@ -11,20 +11,32 @@ class Utils {
         foreach($txt_params as $param) {
             $param = strtolower($param);
             $param = trim($param, " -");
+            $param = str_replace("²", "2", $param);
             $param = preg_replace("/\s+/", "-", $param);
-            $param = preg_replace("/[\-]+/", "-", $param);
+            $param = preg_replace("/[\-_]+/", "-", $param);
+            $param = preg_replace('/[^a-z0-9_\-]/i', "", $param);
             $items[] = $param;
+            zdebug($items);
         }
         $items[] = $id;
-        zdebug($items);
 
-        $result = implode($items, "-");
+        $result = implode("-", $items);
 
         return $result;
 
 
 
 
+    }
+
+    public static function stdReplace($word) {
+        $replace = [
+            "house" => "maison",
+            "apartment" => "appartement",
+        ];
+        $result = $replace[$word] ?? $word;
+
+        return $result;
     }
 
 }

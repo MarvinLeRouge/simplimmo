@@ -24,8 +24,8 @@ class PropertyController extends Controller {
         zlog(__CLASS__ . " / " . __FUNCTION__);
         $data = $this->repository->getAll();
         foreach($data as $i => $row) {
-            $url = Utils::buildUrl([$row->getBuildingType(), $row->getTitle()], $row->getId());
-            zdebug($url);
+            $url = Utils::buildUrl([Utils::stdReplace($row->getBuildingType()), $row->getTitle()], $row->getId());
+            $data[$i] = ["property" => $row, "url" => $url];
         }
         $this->render('property/property_list.twig', ['properties' => $data]);
     }
