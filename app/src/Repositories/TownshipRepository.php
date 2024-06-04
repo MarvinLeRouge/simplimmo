@@ -6,43 +6,39 @@ use PDO;
 use Simplimmo\Classes\Database as Database;
 use Simplimmo\Models\Department as Township;
 
-class TownshipRepository extends Database
-{
+class TownshipRepository extends Database {
     public function getAll(): array
     {
-        $req = $this->getDb()->query('SELECT * FROM township');
+        $req = $this->getDb()->query('SELECT * FROM geo_township');
 
         $data = $req->fetchAll(PDO::FETCH_CLASS, Township::class);
 
         return $data;
     }
 
-    public function getById(int $township_id): Township
-    {
-        $req = $this->getDb()->prepare('SELECT * FROM township WHERE id = :id');
-        $req->execute(['id' => $township_id]);
-        return $req->fetch(PDO::FETCH_CLASS, Township::class);
+    public function getById(int $township_id): Township {
+        $req = $this->getDb()->prepare('SELECT * FROM geo_township WHERE township_id = :township_id');
+        $req->execute(['township_id' => $township_id]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Township::class);
+        $data = $data ? $data[0] : null;
+
+        return $data;
     }
 
-    public function getByName($township_name): Township
-    {
-        $req = $this->getDb()->prepare('SELECT * FROM township WHERE name = :name');
-        $req->execute(['name' => $township_name]);
-        return $req->fetch(PDO::FETCH_CLASS, Township::class);
+    public function getByName($township_name): array {
+        $req = $this->getDb()->prepare('SELECT * FROM geo_township WHERE libelle like %:township_name%');
+        $req->execute(['township_name' => $township_name]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Township::class);
+
+        return $data;
     }
 
-    public function getByPostalCode($township_postal_code): Township
-    {
-        $req = $this->getDb()->prepare('SELECT * FROM township WHERE postal_code = :postal_code');
-        $req->execute(['postal_code' => $township_postal_code]);
-        return $req->fetch(PDO::FETCH_CLASS, Township::class);
-    }
+    public function getByZipcode($zipcode): Township {
+        $req = $this->getDb()->prepare('SELECT t.* FROM geo_township t INNER JOIN geo_zipcode z ON t.township_id = z.township_id WHERE z.zipcode = :zipcode GROUP BY t.township_id');
+        $req->execute(['zipcode' => $zipcode]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Township::class);
 
-    public function getByInseeCode($township_insee_code): Township
-    {
-        $req = $this->getDb()->prepare('SELECT * FROM township WHERE insee_code = :insee_code');
-        $req->execute(['insee_code' => $township_insee_code]);
-        return $req->fetch(PDO::FETCH_CLASS, Township::class);
+        return $data;
     }
 
 }

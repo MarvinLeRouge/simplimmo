@@ -1,12 +1,15 @@
 <?php
 namespace Simplimmo\Controllers;
-use Simplimmo\Controllers\PropertyController;
-use Simplimmo\Models\House;
+use Simplimmo\Controllers\PropertyController as PropertyController;
+use Simplimmo\Models\House as House;
+use Simplimmo\Repositories\HouseRepository as HouseRepository;
 
 class HouseController extends PropertyController {
+
     public function __construct() {
         parent::__construct();
-        //$this->model = new House();
+        $this->model = new House();
+        $this->repository = new HouseRepository();
     }
 
     /**
@@ -16,7 +19,8 @@ class HouseController extends PropertyController {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        zdebug(__CLASS__ . " / " . __FUNCTION__);
+        $data = $this->repository->getAll();
+        $this->render('property/house_list.twig', ['properties' => $data]);
     }
 
     /**
@@ -26,7 +30,9 @@ class HouseController extends PropertyController {
      */
     public function details($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
+        $data = $this->repository->getById($id);
+        $this->render('property/house.twig', ['data' => $data]);
+
     }
 
     /**
@@ -36,7 +42,6 @@ class HouseController extends PropertyController {
      */
     public static function create($params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
     }
 
     /**
@@ -46,7 +51,6 @@ class HouseController extends PropertyController {
      */
     public static function read($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -56,7 +60,6 @@ class HouseController extends PropertyController {
      */
     public static function update($id, $params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -66,7 +69,6 @@ class HouseController extends PropertyController {
      */
     public static function delete($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
 }

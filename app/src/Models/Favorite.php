@@ -5,7 +5,7 @@ namespace Simplimmo\Models;
 use Simplimmo\Core\Model as Model;
 use \DateTime;
 
-class Favorites extends Model
+class Favorite extends Model
 {
 
     private int $id;
@@ -16,15 +16,6 @@ class Favorites extends Model
     public function __construct(array $data = [])
     {
         parent::__construct($data);
-        $this->id = $data['id'] ?? 0;
-        $this->property_id = $data['property_id'] ?? 0;
-        $this->client_id = $data['client_id'] ?? 0;
-        $this->added_date = new DateTime();
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     public function getPropertyId(): int
@@ -42,8 +33,4 @@ class Favorites extends Model
         return $this->added_date;
     }
 
-    public function setAddedDate(DateTime $date): DateTime
-    {
-        return $this->added_date = $date;
-    }
 }

@@ -1,7 +1,8 @@
 <?php
 
-//die(__DIR__ . "/" . __FILE__);
 header("Location: public/");
+
+//die(__DIR__ . "/" . __FILE__);
 
 /*
 require_once("vendor/autoload.php");

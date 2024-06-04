@@ -1,8 +1,18 @@
 <?php
 namespace Simplimmo\Controllers;
-use Simplimmo\Controllers\Controller;
+use Simplimmo\Core\Controller as Controller;
+use Simplimmo\Models\Client as Client;
+use Simplimmo\Repositories\ClientRepository as ClientRepository;
 
 class ClientController extends Controller {
+    protected Client $model;
+    protected ClientRepository $repository;
+
+    public function __construct() {
+        parent::__construct();
+        $this->model = new Client();
+        $this->repository = new ClientRepository();
+    }
 
     /**
      * 
@@ -11,7 +21,6 @@ class ClientController extends Controller {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        zdebug(__CLASS__ . " / " . __FUNCTION__);
     }
 
     /**
@@ -21,7 +30,6 @@ class ClientController extends Controller {
      */
     public function login() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        zdebug(__CLASS__ . " / " . __FUNCTION__);
     }
 
     /**
@@ -31,7 +39,6 @@ class ClientController extends Controller {
      */
     public static function create($params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
     }
 
     /**
@@ -41,7 +48,6 @@ class ClientController extends Controller {
      */
     public static function read($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -51,7 +57,6 @@ class ClientController extends Controller {
      */
     public static function update($id, $params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -61,6 +66,5 @@ class ClientController extends Controller {
      */
     public static function delete($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 }

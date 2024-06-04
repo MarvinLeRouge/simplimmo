@@ -8,15 +8,11 @@ class Township extends Model
 {
     private $id;
     private string $name;
-    private string $postalCode;
-    private string $inseeCode;
+    private string $postal_code;
 
     public function __construct(array $data = [])
     {
         parent::__construct($data);
-        $this->name = $data['name'] ?? '';
-        $this->postalCode = $data['postalCode'] ?? '';
-        $this->inseeCode = $data['inseeCode'] ?? '';
     }
 
     public function getId()
@@ -34,8 +30,4 @@ class Township extends Model
         return $this->postalCode;
     }
 
-    public function getInseeCode(): string
-    {
-        return $this->inseeCode;
-    }
 }

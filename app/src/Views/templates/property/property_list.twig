@@ -1,0 +1,9 @@
+{# templates/property_list.twig #}
+
+<ul class="properties_list">
+    {% for property in properties %}
+        <li class="properties_list__item">
+            {% include 'property/property_list_item.twig' %}
+        </li>
+    {% endfor %}
+</ul>

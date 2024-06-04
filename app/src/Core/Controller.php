@@ -2,16 +2,16 @@
 namespace Simplimmo\Core;
 
 class Controller {
-    protected $model;
-    protected $view;
+    private $twig;
 
-    public function __construct($model = null, $view = null) {
-        $this->model = $model;
-        $this->view = $view;
+    public function __construct() {
+        zlog(get_class($this) . " instantiation");
+
+        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../Views/templates');
+        $this->twig = new \Twig\Environment($loader);
     }
 
-    public function load() {
-        $data = $this->model->get_data();
-        $this->view->output($data);
+    public function render($name, $data = []) {
+        echo $this->twig->render($name, $data);
     }
 }

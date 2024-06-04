@@ -1,9 +1,19 @@
 <?php
 namespace Simplimmo\Controllers;
-use Simplimmo\Controllers\Controller;
+use Simplimmo\Core\Controller as Controller;
+use Simplimmo\Models\ContactClientProperty as ContactClientProperty;
+use Simplimmo\Repositories\ContactClientPropertyRepository as ContactClientPropertyRepository;
 
 class ContactClientPropertyController extends Controller {
+    protected ContactClientProperty $model;
+    protected ContactClientPropertyRepository $repository;
 
+    public function __construct() {
+        parent::__construct();
+        $this->model = new ContactClientProperty();
+        $this->repository = new ContactClientPropertyRepository();
+    }
+    
     /**
      * 
      * Get list of all contact requests from clients about propreties
@@ -11,7 +21,6 @@ class ContactClientPropertyController extends Controller {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        zdebug(__CLASS__ . " / " . __FUNCTION__);
     }
 
     /**
@@ -21,7 +30,6 @@ class ContactClientPropertyController extends Controller {
      */
     public function details($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -31,7 +39,6 @@ class ContactClientPropertyController extends Controller {
      */
     public static function create($params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
     }
 
     /**
@@ -41,7 +48,6 @@ class ContactClientPropertyController extends Controller {
      */
     public static function read($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -51,7 +57,6 @@ class ContactClientPropertyController extends Controller {
      */
     public static function update($id, $params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -61,7 +66,6 @@ class ContactClientPropertyController extends Controller {
      */
     public static function delete($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
 }

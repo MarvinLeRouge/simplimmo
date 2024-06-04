@@ -1,8 +1,16 @@
 <?php
 namespace Simplimmo\Controllers;
-use Simplimmo\Controllers\PropertyController;
+use Simplimmo\Controllers\PropertyController as PropertyController;
+use Simplimmo\Models\Apartment as Apartment;
+use Simplimmo\Repositories\ApartmentRepository as ApartmentRepository;
 
 class ApartmentController extends PropertyController {
+    
+    public function __construct() {
+        parent::__construct();
+        $this->model = new Apartment();
+        $this->repository = new ApartmentRepository();
+    }
 
     /**
      * 
@@ -11,7 +19,6 @@ class ApartmentController extends PropertyController {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        zdebug(__CLASS__ . " / " . __FUNCTION__);
     }
 
     /**
@@ -21,7 +28,6 @@ class ApartmentController extends PropertyController {
      */
     public function details($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -31,7 +37,6 @@ class ApartmentController extends PropertyController {
      */
     public static function create($params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $params);
     }
 
     /**
@@ -41,7 +46,6 @@ class ApartmentController extends PropertyController {
      */
     public static function read($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -51,7 +55,6 @@ class ApartmentController extends PropertyController {
      */
     public static function update($id, $params) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -61,7 +64,6 @@ class ApartmentController extends PropertyController {
      */
     public static function delete($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
-        zdebug(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
 }

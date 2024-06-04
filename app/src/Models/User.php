@@ -9,9 +9,11 @@ use \DateTime;
 class User extends Model
 {
     protected int $id;
+    protected string $login;
     protected string $password;
-    protected DateTime $added_at;
-    protected DateTime $updated_at;
+    protected DateTime $added_date;
+    protected DateTime $updated_date;
+    protected DateTime $last_access_date;
 
     /**
      * Constructor to initialize property attributes
@@ -21,10 +23,6 @@ class User extends Model
     public function __construct(array $data = [])
     {
         parent::__construct($data);
-        $this->id = $data['id'] ?? 0;
-        $this->password = $data['password'] ?? '';
-        $this->added_at = new DateTime();
-        $this->updated_at = new DateTime();
     }
 
     // Getters and setters for each property with type hinting

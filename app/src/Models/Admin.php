@@ -16,7 +16,6 @@ class Admin extends User
     public function __construct(protected $data = [])
     {
         parent::__construct($data);
-        $this->login = $this->data['login'];
     }
 
     public function getLogin(): string

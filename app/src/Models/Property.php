@@ -4,23 +4,27 @@ namespace Simplimmo\Models;
 use Simplimmo\Core\Model as Model;
 use \DateTime;
 class Property extends Model {
-    protected int $id;
-    protected string $property_type;
-    protected string $listing_type;
-    protected float $price;
-    protected int $property_rooms;
-    protected int $property_bedrooms;
+    protected ?int $property_id;
+    protected string $building_type;
+    protected string $transaction_type;
+    protected int $price;
+    protected int $rooms;
+    protected int $bedrooms;
+    protected string $title;
     protected string $description;
-    protected string $property_address;
-    protected int $geolocation_township_id;
-    protected float $living_space_area;
+    protected ?int $township_id;
+    protected ?string $address;
+    protected int $living_space_area;
     protected string $energetic_class_type;
     protected string $ges_class_type;
     protected int $year_of_construction;
-    protected array $characteristics;
-    protected DateTime $added_date;
-    protected DateTime $update_date;
-    protected DateTime $access_date;
+    protected ?array $features;
+    protected ?string $added_date;
+    protected ?string $updated_date;
+    protected ?int $land_surface;
+    protected int $levels;
+    protected ?bool $is_furnished;
+    
 
     /**
      * Constructor to initialize property attributes
@@ -29,154 +33,154 @@ class Property extends Model {
      */
     public function __construct(array $data = []) {
         parent::__construct($data);
-        $this->id = $data['id'] ;
-        $this->property_type = $data['property_type'] ?? '';
-        $this->listing_type = $data['listing_type'] ?? '';
-        $this->price = $data['price'] ?? 0.0;
-        $this->property_rooms = $data['property_rooms'] ?? 0;
-        $this->property_bedrooms = $data['property_bedrooms'] ?? 0;
-        $this->description = $data['description'] ?? '';
-        $this->property_address = $data['property_address'] ?? '';
-        $this->geolocation_township_id = $data['geolocation_township_id'] ?? 0;
-        $this->living_space_area = $data['living_space_area'] ?? 0.0;
-        $this->energetic_class_type = $data['energetic_class_type'] ?? '';
-        $this->ges_class_type = $data['ges_class_type'] ?? '';
-        $this->year_of_construction = $data['year_of_construction'] ?? 0;
-        $this->characteristics = $data['caracteristics'] ?? [];
-        $this->added_date = new DateTime($data['added_date'] ?? 'now');
-        $this->update_date = new DateTime($data['update_date'] ?? 'now');
-        $this->access_date = new DateTime($data['access_date'] ?? 'now');
     }
 
     // Getters and setters for each property with type hinting
-    public function getPropertyId(): int {
+    public function getId(): int {
         return $this->property_id;
     }
-    public function getPropertyType(): string {
-        return $this->property_type;
+    public function getBuildingType(): string {
+        return $this->building_type;
     }
 
-    public function setPropertyType(string $property_type): void {
-        $this->property_type = $property_type;
+    public function setBuildingType(string $building_type): bool {
+        $this->building_type = $building_type;
+        return ($this->building_type == $building_type);
     }
 
-    public function getListingType(): string {
-        return $this->listing_type;
+    public function getTransactionType(): string {
+        return $this->transaction_type;
     }
 
-    public function setListingType(string $listing_type): void {
-        $this->listing_type = $listing_type;
+    public function setTransactionType(string $transaction_type): bool {
+        $this->transaction_type = $transaction_type;
+        return ($this->transaction_type == $transaction_type);
+
     }
 
-    public function getPrice(): float {
+    public function getPrice(): int {
         return $this->price;
     }
 
-    public function setPrice(float $price): void {
+    public function setPrice(int $price): bool {
         $this->price = $price;
+        return ($this->price == $price);
     }
 
-    public function getPropertyRooms(): int {
-        return $this->property_rooms;
+    public function getRooms(): int {
+        return $this->rooms;
     }
 
-    public function setPropertyRooms(int $property_rooms): void {
-        $this->property_rooms = $property_rooms;
+    public function setRooms(int $rooms): bool {
+        $this->rooms = $rooms;
+        return ($this->rooms == $rooms);
     }
 
-    public function getPropertyBedrooms(): int {
-        return $this->property_bedrooms;
+    public function getBedrooms(): int {
+        return $this->bedrooms;
     }
 
-    public function setPropertyBedrooms(int $property_bedrooms): void {
-        $this->property_bedrooms = $property_bedrooms;
+    public function setBedrooms(int $bedrooms): bool {
+        $this->bedrooms = $bedrooms;
+        return ($this->bedrooms == $bedrooms);
+    }
+
+    public function getTitle(): string {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): bool {
+        $this->title = $title;
+        return ($this->title == $title);
     }
 
     public function getDescription(): string {
         return $this->description;
     }
 
-    public function setDescription(string $description): void {
+    public function setDescription(string $description): bool {
         $this->description = $description;
+        return ($this->description == $description);
     }
 
-    public function getPropertyAddress(): string {
-        return $this->property_address;
+    public function getTownshipId(): int {
+        return $this->township_id;
     }
 
-    public function setPropertyAddress(string $property_address): void {
-        $this->property_address = $property_address;
+    public function setTownshipId(int $township_id): bool {
+        $this->township_id = $township_id;
+        return ($this->township_id == $township_id);
     }
 
-    public function getGeolocationTownshipId(): int {
-        return $this->geolocation_township_id;
+    public function getAddress(): string {
+        return $this->address;
     }
 
-    public function setGeolocationTownshipId(int $geolocation_township_id): void {
-        $this->geolocation_township_id = $geolocation_township_id;
+    public function setAddress(string $address): bool {
+        $this->address = $address;
+        return ($this->address == $address);
     }
 
-    public function getLivingSpaceArea(): float {
+    public function getLivingSpaceArea(): int {
         return $this->living_space_area;
+        return ($this->building_type == $building_type);
     }
 
-    public function setLivingSpaceArea(float $living_space_area): void {
+    public function setLivingSpaceArea(int $living_space_area): bool {
         $this->living_space_area = $living_space_area;
+        return ($this->living_space_area == $living_space_area);
     }
 
     public function getEnergeticClassType(): string {
         return $this->energetic_class_type;
     }
 
-    public function setEnergeticClassType(string $energetic_class_type): void {
+    public function setEnergeticClassType(string $energetic_class_type): bool {
         $this->energetic_class_type = $energetic_class_type;
+        return ($this->energetic_class_type == $energetic_class_type);
     }
 
     public function getGesClassType(): string {
         return $this->ges_class_type;
     }
 
-    public function setGesClassType(string $ges_class_type): void {
+    public function setGesClassType(string $ges_class_type): bool {
         $this->ges_class_type = $ges_class_type;
+        return ($this->ges_class_type == $ges_class_type);
     }
 
     public function getYearOfConstruction(): int {
         return $this->year_of_construction;
     }
 
-    public function setYearOfConstruction(int $year_of_construction): void {
+    public function setYearOfConstruction(int $year_of_construction): bool {
         $this->year_of_construction = $year_of_construction;
+        return ($this->year_of_construction == $year_of_construction);
     }
 
-    public function getCharacteristics(): array {
-        return $this->characteristics;
+    public function getFeatures(): array {
+        return $this->features;
     }
 
-    public function setCharacteristics(array $characteristics): void {
-        $this->characteristics = $characteristics;
+    public function setFeatures(array $features): bool {
+        $this->features = $features;
+        return ($this->features == $features);
+    }
+
+    public function isFurnished(): bool {
+        return $this->is_furnished;
+    }
+
+    public function setFurnished(bool $is_furnished): bool {
+        $this->is_furnished = $is_furnished;
+        return ($this->is_furnished == $is_furnished);
     }
 
     public function getAddedDate(): DateTime {
         return $this->added_date;
     }
 
-    public function setAddedDate(DateTime $added_date): void {
-        $this->added_date = $added_date;
-    }
-
     public function getUpdateDate(): DateTime {
-        return $this->update_date;
-    }
-
-    public function setUpdateDate(\DateTime $update_date): void {
-        $this->update_date = $update_date;
-    }
-
-    public function getAccessDate(): DateTime {
-        return $this->access_date;
-    }
-
-    public function setAccessDate(DateTime $access_date): void {
-        $this->access_date = $access_date;
+        return $this->updated_date;
     }
 }

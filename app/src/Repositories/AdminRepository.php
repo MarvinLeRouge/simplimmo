@@ -16,12 +16,12 @@ class AdminRepository extends Database
 
         return $data;
     }
-    public function findById($admin_id): Admin
+    public function getById($admin_id): Admin
     {
-        $req = $this->getDb()->prepare('SELECT * FROM admin WHERE id = :id');
+        $req = $this->getDb()->prepare('SELECT * FROM admin WHERE admin_id = :admin_id');
 
         $req->execute([
-            'id' => $admin_id
+            'admin_id' => $admin_id
         ]);
 
         $req->setFetchMode(PDO::FETCH_CLASS, Admin::class);
@@ -29,43 +29,39 @@ class AdminRepository extends Database
         return $req->fetch();
     }
 
-    public function create($login, $password, $added_date, $update_date): void
+    public function create($login, $password): void
     {
-        $query = 'INSERT INTO property (login, password, added_date, update_date)
-                VALUES (:login, :password, :added_date, :update_date)';
+        $query = 'INSERT INTO admin (login, password)
+                VALUES (:login, :password)';
 
         $req = $this->getDb()->prepare($query);
 
          $req->execute([
             'login' => $login,
             'password' => $password,
-            'added_date' => $added_date,
-            'update_date' => $update_date
         ]);
     }
     public function delete($admin_id): void
     {
-        $query = 'SELECT * FROM admin WHERE id = :id';
+        $query = 'DELETE FROM admin WHERE admin_id = :admin_id';
 
         $req = $this->getDb()->prepare($query);
 
         $req->execute([
-            'id' => $admin_id
+            'admin_id' => $admin_id
         ]);
     }
 
-    public function update($admin_id, $login, $password, $added_date, $update_date): void
+    public function update($admin_id, $login, $password,): void
     {
-        $query = 'UPDATE admin SET login = :login, password = :password, added_date = :added_date, update_date = :update_date WHERE id = :id';
+        $query = 'UPDATE admin SET login = :login, password = :password WHERE admin_id = :admin_id';
 
         $req = $this->getDb()->prepare($query);
 
         $req->execute([
-            'id' => $admin_id,
+            'admin_id' => $admin_id,
             'login' => $login,
-            'password' => $password,
-            'added_date' => $added_date,
-            'update_date' => $update_date
+            'password' => $password
         ]);
     }
 }
