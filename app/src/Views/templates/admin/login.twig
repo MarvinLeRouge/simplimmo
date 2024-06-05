@@ -1,0 +1,16 @@
+{# admin/login.twig #}
+{{status}}
+<form action="/dashboard" method="post">
+    <p>
+        <label for="email">E-mail</label>
+        <input type="email" name="email" value="{{email}}" required>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" name="password" value="" required>
+    </p>
+    <p>
+        <input type="hidden" name="form_src" value="admin/login">
+        <button type="submit">Envoyer</button>
+    </p>
+</form>

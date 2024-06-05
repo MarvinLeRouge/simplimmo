@@ -29,17 +29,33 @@ class AdminRepository extends Database
         return $req->fetch();
     }
 
-    public function create($login, $password): void
-    {
-        $query = 'INSERT INTO admin (login, password)
-                VALUES (:login, :password)';
+    public function getByEmail($email): Admin {
+        $req = $this->getDb()->prepare('SELECT * FROM admin WHERE email = :email');
+        $req->execute(['email' => $email]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Admin::class);
+        $data = $data[0] ?? [];
 
+        return $data;
+    }
+
+    public function access($admin_id): bool {
+        $req = $this->getDb()->prepare('UPDATE admin SET last_access_date = NOW() WHERE admin_id = :admin_id');
+        $result = $req->execute(['admin_id' => $admin_id]);
+
+        return $result;
+    }
+
+
+    public function create($data): bool
+    {
+        $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+
+        $query = 'INSERT INTO admin (email, password) VALUES (:email, :password)';
         $req = $this->getDb()->prepare($query);
 
-         $req->execute([
-            'login' => $login,
-            'password' => $password,
-        ]);
+        $result = $req->execute($data);
+
+        return $result;
     }
     public function delete($admin_id): void
     {

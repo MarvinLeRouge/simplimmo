@@ -27,6 +27,11 @@ $regexes = [
         "method" => "callMeBack",
         "param" => "$1",
     ],
+    "/^admin\/create-(.+)$/" => [
+        "controller" => "AdminController",
+        "method" => "create",
+        "param" => "$1",
+    ],
     
 ];
 $controllersMatch = [

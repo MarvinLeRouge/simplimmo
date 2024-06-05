@@ -1,0 +1,17 @@
+{# admin/create.twig #}
+
+Page de création de compte admin {{status}}
+<form action="/admin/create-{{salt}}" method="post">
+    <input type="email" name="email" required value={{email}}>
+    <br>
+    <input type="password" name="password" required value={{password}}>
+    <br>
+    <input type="password" name="password2" required value={{password2}}>
+    <br>
+    <input type="hidden" name="form_src" value="admin/create">
+    <button type="submit">Envoyer</button>
+
+    Version sur erreur
+
+    Version sur succès
+</form>
