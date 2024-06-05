@@ -24,7 +24,6 @@ class Property extends Model {
     protected ?int $land_surface;
     protected int $levels;
     protected ?bool $is_furnished;
-    
 
     /**
      * Constructor to initialize property attributes

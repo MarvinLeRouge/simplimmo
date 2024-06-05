@@ -1,0 +1,11 @@
+{# favorite/client_favorite_list.twig #}
+
+Page de liste de favoris client
+
+<ul class="favorites_list">
+    {% for item in favorites %}
+        <li class="favorites_list__item">
+            {% include 'favorite/client_favorite_list_item.twig' %}
+        </li>
+    {% endfor %}
+</ul>

@@ -21,6 +21,16 @@ class SiteController extends Controller {
      */
     public function contact() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
+        $data = ["status" => "initial"];
+        if((isset($_POST["form_src"])) && ($_POST["form_src"] == "contact")) {
+            zdebug($_POST);
+            $contact_data = $_POST;
+            unset($contact_data["form_src"]);
+            $contact_added = $this->repository->setContact($contact_data);
+            $data["status"] = ($contact_added ? "success" : "reload");
+            $data = array_merge($data, $_POST);
+        }
+        $this->render('site/contact.twig', $data);
     }
 
     /**
@@ -30,6 +40,7 @@ class SiteController extends Controller {
      */
     public function legalNotice() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
+        $this->render('site/legalnotice.twig');
     }
 
     /**
@@ -39,7 +50,7 @@ class SiteController extends Controller {
      */
     public function pageNotFound() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        $this->render('404');
+        $this->render('site/404.twig');
     }
 
 }

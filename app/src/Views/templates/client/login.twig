@@ -1,0 +1,15 @@
+{# client/login.twig #}
+
+Page de login de compte client {{status}}
+<form action="/client" method="post">
+    <input type="email" name="email" required value={{email}}>
+    <br>
+    <input type="password" name="password" required value={{password}}>
+    <br>
+    <input type="hidden" name="form_src" value="client/login">
+    <button type="submit">Envoyer</button>
+
+    Version sur erreur
+
+    Version sur succès
+</form>

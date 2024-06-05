@@ -91,6 +91,10 @@ if((empty($controller)) || (empty($method))) {
             "controller" => "ClientController",
             "method" => "login",
         ],
+        "client/creer-compte" => [
+            "controller" => "ClientController",
+            "method" => "create",
+        ],
         "dashboard" => [
             "controller" => "AdminController",
             "method" => "login",

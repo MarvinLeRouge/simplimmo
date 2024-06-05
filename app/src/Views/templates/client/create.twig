@@ -1,0 +1,23 @@
+{# client/create.twig #}
+
+Page de création de compte client {{status}}
+<form action="/client/creer-compte" method="post">
+    <input type="text" name="first_name" required value={{first_name}}>
+    <br>
+    <input type="text" name="last_name" required value={{last_name}}>
+    <br>
+    <input type="email" name="email" required value={{email}}>
+    <br>
+    <input type="tel" name="phone" required value={{phone}}>
+    <br>
+    <input type="password" name="password" required value={{password}}>
+    <br>
+    <input type="password" name="password2" required value={{password2}}>
+    <br>
+    <input type="hidden" name="form_src" value="client/create">
+    <button type="submit">Envoyer</button>
+
+    Version sur erreur
+
+    Version sur succès
+</form>

@@ -3,23 +3,32 @@ namespace Simplimmo\Repositories;
 
 use \PDO as PDO;
 use Simplimmo\Classes\Database as Database;
-use Simplimmo\Models\Property as Property;
+use Simplimmo\Models\Favorite as Favorite;
 use \DateTime;
 
-class PropertyRepository extends Database {
+class FavoriteRepository extends Database {
 
     public function getAll(): array {
-        $req = $this->getDb()->query('SELECT * FROM property');
-        $data = $req->fetchAll(PDO::FETCH_CLASS, Property::class);
+        $req = $this->getDb()->query('SELECT * FROM favorite');
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Favorite::class);
 
         return $data;
     }
 
-    public function getById($property_id) {
-        $req = $this->getDb()->prepare('SELECT * FROM property WHERE property_id = :property_id');
-        $req->execute(['property_id' => $property_id]);
-        $data = $req->fetchAll(PDO::FETCH_CLASS, Property::class);
+    public function getById($favorite_id) {
+        $req = $this->getDb()->prepare('SELECT * FROM favorite WHERE favorite_id = :favorite_id');
+        $req->execute(['favorite_id' => $favorite_id]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Favorite::class);
         $data = $data[0] ?? [];
+
+        return($data);
+
+    }
+
+    public function getByClientId($client_id) {
+        $req = $this->getDb()->prepare('SELECT * FROM favorite WHERE client_id = :client_id');
+        $req->execute(['client_id' => $client_id]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Favorite::class);
 
         return($data);
 

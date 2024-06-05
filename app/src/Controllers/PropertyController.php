@@ -35,10 +35,10 @@ class PropertyController extends Controller {
      * Get details about one property
      * 
      */
-    public function details($id) {
-        $data = $this->repository->getById($id);
+    public function details($property_id) {
+        zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $property_id);
+        $data = $this->repository->getById($property_id);
         $this->render('property/property.twig', ['data' => $data]);
-        zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
     }
 
     /**
@@ -46,7 +46,11 @@ class PropertyController extends Controller {
      * Ask for callback about a specific property
      * 
      */
-    public function callMeBack($id) {
-        zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
+    public function callMeBack($property_id) {
+        zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $property_id);
+        $data = $this->repository->getById($property_id);
+        $msg = "Bonjour, je souhaite être recontacté concernant le bien suivant :\nType : " . ($data->getBuildingType() == "house" ? "maison" : "appartement") . "\n" . $data->getTitle() . " ID " . $property_id;
+        $this->render('site/contact.twig', compact("msg"));
+
     }
 }
