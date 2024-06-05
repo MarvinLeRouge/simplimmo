@@ -15,7 +15,7 @@ class PropertyRepository extends Database {
         return $data;
     }
 
-    public function getById($property_id) {
+    public function getById($property_id): Property {
         $req = $this->getDb()->prepare('SELECT * FROM property WHERE property_id = :property_id');
         $req->execute(['property_id' => $property_id]);
         $data = $req->fetchAll(PDO::FETCH_CLASS, Property::class);
@@ -25,6 +25,18 @@ class PropertyRepository extends Database {
 
     }
 
+    public function search($criteria): array {
+        $data = [];
+
+        // Construire ici les requètes de recherche
+        /*
+        Par type
+        Par prix
+        Par localisation (ville, département, région)
+        */
+
+        return $data;
+    }
 
     public function create($data) : void {
         $query = 'INSERT INTO property (
