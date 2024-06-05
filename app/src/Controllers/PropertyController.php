@@ -33,7 +33,7 @@ class PropertyController extends Controller {
             $url = Utils::buildUrl([Utils::stdReplace($row->getBuildingType()), $row->getTitle()], $row->getId());
             $data[$i] = ["property" => $row, "url" => $url];
         }
-        $this->render('property/property_list.twig', ['properties' => $data]);
+        $this->render('home.twig', ['properties' => $data]);
     }
 
     /**

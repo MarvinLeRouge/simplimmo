@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Real Estate Homepage</title>
+    <link rel="stylesheet" href="../../../public/assets/css/footer.css">
+    <link rel="stylesheet" href="../../../public/assets/css/body.css">
+    <link rel="stylesheet" href="../../../public/assets/css/header.css">
+
+</head>
+<body >
+
+<header>
+    {% include 'header.twig' %}
+</header>
+<main class="main">
+    <h2>Biens pertinents</h2>
+    <ul>
+        {% for item in properties %}
+            <li class="properties_list__item">
+                {% include 'property/property_list_item.twig' %}
+            </li>
+        {% endfor %}
+    </ul>
+</main>
+<footer>
+    {% include 'footer.twig' %}
+</footer>
+</body>
+</html>

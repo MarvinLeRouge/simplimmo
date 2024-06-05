@@ -1,7 +1,19 @@
 {# property/property_list_item.twig #}
 
-{{ item.url }}
-<br>
-{{ item.property.title }}
-<br>
-{{ item.property.description }}
+<div class="property-list-item">
+    <div class="property-image">
+        <img src="{{ item.property.image }}" alt="{{ item.property.title }}">
+    </div>
+    <div class="property-details">
+        <div class="property-price">
+            $ {{ item.property.price }}<span>/month</span>
+        </div>
+        <a href="{{ item.url }}" class="property-title">
+            <h2>{{ item.property.title }}</h2>
+        </a>
+        <div class="property-location">
+            {{ item.property.location }}
+        </div>
+    </div>
+</div>
+
