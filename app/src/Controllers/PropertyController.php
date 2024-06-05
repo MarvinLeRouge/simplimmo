@@ -22,7 +22,13 @@ class PropertyController extends Controller {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
-        $data = $this->repository->getAll();
+        if((isset($_POST["form_src"])) && ($_POST["form_src"] == "property/search")) {
+            // Ici on recherche les propriétés correspondant aux critères recherchés
+            $data = $this->repository->search($_POST);
+        }        
+        else {
+            $data = $this->repository->getAll();
+        }
         foreach($data as $i => $row) {
             $url = Utils::buildUrl([Utils::stdReplace($row->getBuildingType()), $row->getTitle()], $row->getId());
             $data[$i] = ["property" => $row, "url" => $url];
