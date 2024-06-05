@@ -16,7 +16,11 @@ class Utils {
             $param = preg_replace("/[\-_]+/", "-", $param);
             $param = preg_replace('/[^a-z0-9_\-]/i', "", $param);
             $items[] = $param;
-            zdebug($items);
+        }
+        if(count($items) > 1) {
+            $items[1] = $items[0] . "/" . $items[1];
+            array_shift($items);
+
         }
         $items[] = $id;
 

@@ -1,8 +1,10 @@
 <?php
 namespace Simplimmo\Controllers;
+
 use Simplimmo\Controllers\PropertyController as PropertyController;
 use Simplimmo\Models\Apartment as Apartment;
 use Simplimmo\Repositories\ApartmentRepository as ApartmentRepository;
+use Simplimmo\Services\Utils as Utils;
 
 class ApartmentController extends PropertyController {
     
@@ -19,15 +21,23 @@ class ApartmentController extends PropertyController {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
+        $data = $this->repository->getAll();
+        foreach($data as $i => $row) {
+            $url = Utils::buildUrl([Utils::stdReplace($row->getBuildingType()), $row->getTitle()], $row->getId());
+            $data[$i] = ["property" => $row, "url" => $url];
+        }
+        $this->render('property/apartment_list.twig', ['properties' => $data]);
     }
 
     /**
      * 
-     * Get details of one specific apartment
+     * Get details about one property
      * 
      */
     public function details($id) {
         zlog(__CLASS__ . " / " . __FUNCTION__ . " / " . $id);
+        $data = $this->repository->getById($id);
+        $this->render('property/apartment.twig', ['data' => $data]);
     }
 
     /**

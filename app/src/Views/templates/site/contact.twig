@@ -1,0 +1,16 @@
+{# site/contact.twig #}
+
+Page de contact client générique {{status}}
+<form action="/contact" method="post">
+    <input type="text" name="name" required value={{name}}>
+    <br>
+    <input type="email" name="email" required value={{email}}>
+    <br>
+    <textarea name="msg" required>{{msg}}</textarea>
+    <input type="hidden" name="form_src" value="contact">
+    <button type="submit">Envoyer</button>
+
+    Version sur erreur
+
+    Version sur succès
+</form>

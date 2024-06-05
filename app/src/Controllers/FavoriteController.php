@@ -3,15 +3,19 @@ namespace Simplimmo\Controllers;
 use Simplimmo\Core\Controller as Controller;
 use Simplimmo\Models\Favorite as Favorite;
 use Simplimmo\Repositories\FavoriteRepository as FavoriteRepository;
+use Simplimmo\Repositories\PropertyRepository as PropertyRepository;
+use Simplimmo\Services\Utils as Utils;
 
 class FavoriteController extends Controller {
     protected Favorite $model;
     protected FavoriteRepository $repository;
+    protected PropertyRepository $property_repository;
 
     public function __construct() {
         parent::__construct();
         $this->model = new Favorite();
         $this->repository = new FavoriteRepository();
+        $this->property_repository = new PropertyRepository();
     }
 
     /**
@@ -21,6 +25,16 @@ class FavoriteController extends Controller {
      */
     public function index() {
         zlog(__CLASS__ . " / " . __FUNCTION__);
+        $data = [];
+        if($_SESSION["client_id"]) {
+            $data = $this->repository->getByClientId($_SESSION["client_id"]);
+            foreach($data as $i => $favorite) {
+                $property = $this->property_repository->getById($favorite->getPropertyId());
+                $url = Utils::buildUrl([Utils::stdReplace($property->getBuildingType()), $property->getTitle()], $property->getId());
+                $data[$i] = compact("favorite", "property", "url");
+            }
+        }
+        $this->render('favorite/client_favorite_list.twig', ["favorites" => $data]);
     }
 
     /**

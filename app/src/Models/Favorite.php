@@ -5,10 +5,8 @@ namespace Simplimmo\Models;
 use Simplimmo\Core\Model as Model;
 use \DateTime;
 
-class Favorite extends Model
-{
-
-    private int $id;
+class Favorite extends Model {
+    private int $favorite_id;
     private int $property_id;
     private int $client_id;
     private DateTime $added_date;
@@ -26,11 +24,6 @@ class Favorite extends Model
     public function getClientId(): int
     {
         return $this->client_id;
-    }
-
-    public function getAddedDate(): DateTime
-    {
-        return $this->added_date;
     }
 
 }

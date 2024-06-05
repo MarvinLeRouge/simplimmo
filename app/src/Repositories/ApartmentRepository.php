@@ -1,6 +1,7 @@
 <?php
 namespace Simplimmo\Repositories;
 
+use \PDO;
 use Simplimmo\Models\Apartment as Apartment;
 use Simplimmo\Repositories\PropertyRepository as PropertyRepository;
 

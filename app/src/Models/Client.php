@@ -2,30 +2,31 @@
 
 namespace Simplimmo\Models;
 
-use Simplimmo\Models\User as User;
+use Simplimmo\Core\Model as Model;
 
-class Client extends User
-{
+class Client extends Model {
 
+    protected ?int $client_id;
     protected string $first_name;
     protected string $last_name;
     protected string $email;
     protected string $phone;
     protected string $password;
+    protected string $added_date;
+    protected string $updated_date;
 
     /**
      *
      * @params ...
      *
      */
-    public function __construct(protected $data = [])
-    {
+    public function __construct(protected $data = []) {
         parent::__construct($data);
-        $this->first_name = $this->data['first_name'] ?? null;
-        $this->last_name = $this->data['last_name'] ?? null;
-        $this->email = $this->data['email'] ?? null;
-        $this->phone = $this->data['phone'] ?? null;
-        $this->password = $this->data['password'] ?? null;
+    }
+
+    public function getId()
+    {
+        return $this->client_id;
     }
 
     public function getFirstName(): string {
@@ -71,5 +72,16 @@ class Client extends User
     public function setPassword(string $password): bool {
         $this->password = $password;
         return ($this->password == $password);
+    }
+
+    public function verify($data) {
+        $result = true;
+        foreach($data as $label => $value) {
+            $data[$label] = trim($value);
+            $result = $result && !empty($value);
+        }
+        $result = $result && (isset($data["password2"]) ? ($data["password"] == $data["password2"]) : true);
+
+        return $result;
     }
 }

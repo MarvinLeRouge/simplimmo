@@ -16,6 +16,7 @@ class ClientRepository extends Database
 
         return $data;
     }
+
     public function getById($client_id): array
     {
         $req = $this->getDb()->prepare('SELECT * FROM client WHERE client_id = :client_id');
@@ -29,20 +30,26 @@ class ClientRepository extends Database
         return $req->fetch();
     }
 
-    public function create($first_name, $last_name, $phone_number, $email, $password, $added_date, $updated_date): void
-    {
-        $query = 'INSERT INTO property (firstname, lastname, phone_number, email, password)
-                VALUES ( :firstname, :lastname, :phone_number, :email, :password)';
+    public function getByEmail($email): Client {
+        $req = $this->getDb()->prepare('SELECT * FROM client WHERE email = :email');
+        $req->execute(['email' => $email]);
+        $data = $req->fetchAll(PDO::FETCH_CLASS, Client::class);
+        $data = $data[0] ?? [];
+
+        return $data;
+    }
+
+    public function create($data): bool {
+        zdebug($data);
+        $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+        $query = 'INSERT INTO client (first_name, last_name, email, phone, password)
+                VALUES ( :first_name, :last_name, :email, :phone, :password)';
 
         $req = $this->getDb()->prepare($query);
 
-        $req->execute([
-            'firstname' => $first_name,
-            'lastname' => $last_name,
-            'phone_number' => $phone_number,
-            'email' => $email,
-            'password' => $password
-        ]);
+        $result = $req->execute($data);
+
+        return $result;
     }
 
     public function delete($client_id): void
